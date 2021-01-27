@@ -32,8 +32,18 @@ class TodolistsController < ApplicationController
     redirect_to todolist_path(list.id)
   end
   
+  def destroy
+    #レコードを一件取得
+    list = List.find(params[:id])
+    #レコードを削除
+    list.destroy
+    #一覧画面へリダイレクト
+    redirect_to todolists_path
+    
+  end
+  
   private
   def list_params
-    params.require(:list).permit(:title,:body)
+    params.require(:list).permit(:title,:body,:image)
   end
 end
